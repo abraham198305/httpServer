@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
-	"strings"
 
 	"github.com/rs/cors"
 )
@@ -14,8 +13,15 @@ import (
 func main() {
 	port := 7000
 	dirStatic := filepath.Join("..", "www")
-	str := strings.Split(os.Getenv("SESSION_MANAGER"), `/`)[1]
-	nameHost := str[:len(str)-2]
+	nameHost, err := os.Hostname()
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+	/*
+		str := strings.Split(os.Getenv("SESSION_MANAGER"), `/`)[1]
+		nameHost := str[:len(str)-2]
+	*/
 	log.Println(nameHost)
 	startHttpServer(port, dirStatic, nameHost)
 }
