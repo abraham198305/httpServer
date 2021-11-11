@@ -12,7 +12,8 @@ import (
 
 func main() {
 	port := 7000
-	dirStatic := filepath.Join("..", "www")
+	//dirStatic := filepath.Join("..", "www")
+	dirStatic := filepath.Join("..")
 	nameHost, err := os.Hostname()
 	if err != nil {
 		log.Println(err.Error())
